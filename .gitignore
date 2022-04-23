@@ -1,0 +1,14 @@
+__pycache__
+*.pyc
+*.egg-info
+.venv
+build/
+.vscode
+.idea
+contracts
+*.egg
+.coverage
+deployments/
+dist/
+**/kitabu/data/
+.mypy_cache/
