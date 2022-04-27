@@ -19,7 +19,7 @@ url = "https://pypi.org/simple/"
 secondary = true
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 click = "^8.1.2"
 chainlib-eth = "^0.1.0"
 
