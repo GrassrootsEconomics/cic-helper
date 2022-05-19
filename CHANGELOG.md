@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.2 (2022-05-19)
+### Fix
+* Bump default gas limit ([`c1c9d3e`](https://github.com/grassrootseconomics/cic-helper/commit/c1c9d3e217749e7b51aa24a93d1136c835379514))
+
 ## v0.2.1 (2022-04-27)
 ### Fix
 * Bump deps ([`5242eba`](https://github.com/GrassrootsEconomics/cic-helper/commit/5242eba7fc569f9936bb72b939703f97e4dee3c7))
