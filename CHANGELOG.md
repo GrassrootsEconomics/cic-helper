@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.3 (2022-06-13)
+### Fix
+* Add chain_spec and rpc cli args ([`341eb34`](https://github.com/grassrootseconomics/cic-helper/commit/341eb34d20f521d47c5f340b0b2bfebe62eadac9))
+
 ## v0.2.2 (2022-05-19)
 ### Fix
 * Bump default gas limit ([`c1c9d3e`](https://github.com/grassrootseconomics/cic-helper/commit/c1c9d3e217749e7b51aa24a93d1136c835379514))
