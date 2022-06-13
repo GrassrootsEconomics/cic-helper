@@ -9,8 +9,8 @@ CSV_HEADER = [
     "timestamp",
 ]
 
-RPC_PROVIDER = "http://127.0.0.1:8545"
-CHAIN_SPEC = "evm:kitabu:6060:sarafu"
+DEFAULT_RPC_PROVIDER = "https://rpc.sarafu.network"
+DEFAULT_CHAIN_SPEC = "evm:kitabu:6060:sarafu"
 DEFAULT_GAS_LIMIT = 16_000_000
 
 

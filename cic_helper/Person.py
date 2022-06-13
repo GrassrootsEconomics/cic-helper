@@ -8,7 +8,7 @@ from typing import List
 
 from chainlib.eth.address import is_address
 
-from cic_helper.constants import CHAIN_SPEC, CSV_HEADER, DEFAULT_GAS_LIMIT, RPC_PROVIDER
+from cic_helper.constants import CSV_HEADER, DEFAULT_GAS_LIMIT
 
 log = logging.getLogger(__name__)
 
@@ -54,7 +54,13 @@ class Person:
                 )
         return self.user_address
 
-    def get_balance(self, contract_address: str, fee_limit=DEFAULT_GAS_LIMIT):
+    def get_balance(
+        self,
+        contract_address: str,
+        chain_spec: str,
+        rpc_provider: str,
+        fee_limit=DEFAULT_GAS_LIMIT,
+    ):
         if contract_address:
             self.contract_address = contract_address
         cmd = [
@@ -62,9 +68,9 @@ class Person:
             "--fee-limit",
             str(fee_limit),
             "-p",
-            RPC_PROVIDER,
+            rpc_provider,
             "-i",
-            CHAIN_SPEC,
+            chain_spec,
             "-u",
             "-e",
             self.contract_address,
@@ -102,7 +108,14 @@ class Person:
         else:
             return None
 
-    def send(self, contract_address, signer_keyfile, fee_limit=DEFAULT_GAS_LIMIT):
+    def send(
+        self,
+        contract_address,
+        signer_keyfile,
+        chain_spec: str,
+        rpc_provider: str,
+        fee_limit=DEFAULT_GAS_LIMIT,
+    ):
         self.contract_address = contract_address
         log.info(
             f"  Sending {self.send_amount} to {self.phone_number} ({self.user_address})"
@@ -110,9 +123,9 @@ class Person:
         cmd = [
             "erc20-transfer",
             "-p",
-            RPC_PROVIDER,
+            rpc_provider,
             "-i",
-            CHAIN_SPEC,
+            chain_spec,
             "-u",
             "-e",
             contract_address,

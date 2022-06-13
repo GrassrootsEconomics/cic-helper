@@ -5,7 +5,11 @@ import sys
 
 import click
 
-from cic_helper.constants import DEFAULT_GAS_LIMIT
+from cic_helper.constants import (
+    DEFAULT_CHAIN_SPEC,
+    DEFAULT_GAS_LIMIT,
+    DEFAULT_RPC_PROVIDER,
+)
 from cic_helper.Person import load_people_from_csv, save_people_to_csv
 
 log = logging.getLogger(__name__)
@@ -38,7 +42,25 @@ def cli():
     help="Fee limit for each tx",
 )
 @click.option("-t", "--token", type=str, nargs=1, default=False, help="Token Address")
-def get_balances(filename, verbose, fee_limit, token):
+@click.option(
+    "-p",
+    "--rpc_provider",
+    type=str,
+    nargs=1,
+    default=DEFAULT_RPC_PROVIDER,
+    show_default=True,
+    help="RPC Provider",
+)
+@click.option(
+    "-i",
+    "--chain_spec",
+    type=str,
+    nargs=1,
+    default=DEFAULT_CHAIN_SPEC,
+    show_default=True,
+    help="Chain Spec",
+)
+def get_balances(filename, verbose, fee_limit, token, rpc_provider, chain_spec):
     set_log_level(verbose)
     people = load_people_from_csv(filename)
     for person in people:
@@ -46,7 +68,7 @@ def get_balances(filename, verbose, fee_limit, token):
         if err:
             raise Exception(err)
     for person in people:
-        person.get_balance(token, fee_limit)
+        person.get_balance(token, chain_spec, rpc_provider, fee_limit)
     save_people_to_csv(filename, people)
 
 
@@ -102,13 +124,33 @@ def get_addresses(filename, verbose):
 )
 @click.option("-v", "--verbose", count=True, help="Verbosity Level (-v,-vv)")
 @click.option(
+    "-p",
+    "--rpc_provider",
+    type=str,
+    nargs=1,
+    show_default=True,
+    default=DEFAULT_RPC_PROVIDER,
+    help="RPC Provider",
+)
+@click.option(
+    "-i",
+    "--chain_spec",
+    type=str,
+    nargs=1,
+    show_default=True,
+    default=DEFAULT_CHAIN_SPEC,
+    help="Chain Spec",
+)
+@click.option(
     "-y",
     "--signer",
     type=str,
     required=True,
     help='Signer Keyfile Location (e.g "/home/sarafu//wor-deployer-wallet-keyfile")',
 )
-def send(filename, contract_address, fee_limit, signer, verbose):
+def send(
+    filename, contract_address, fee_limit, rpc_provider, chain_spec, signer, verbose
+):
     set_log_level(verbose)
     people = load_people_from_csv(filename)
     errors = []
@@ -123,7 +165,9 @@ def send(filename, contract_address, fee_limit, signer, verbose):
 
     save_people_to_csv(filename=filename, people=people)
     for person in people:
-        person.send(contract_address, signer, fee_limit=fee_limit)
+        person.send(
+            contract_address, signer, chain_spec, rpc_provider, fee_limit=fee_limit
+        )
 
 
 def print_help_msg(command):
