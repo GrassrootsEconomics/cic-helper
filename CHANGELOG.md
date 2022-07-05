@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.4 (2022-07-05)
+### Fix
+* **kitabu:** Update bootnodes ([`f3195d4`](https://github.com/grassrootseconomics/cic-helper/commit/f3195d4297a9f154e0798af48bee11722226c0d8))
+
 ## v0.2.3 (2022-06-13)
 ### Fix
 * Add chain_spec and rpc cli args ([`341eb34`](https://github.com/grassrootseconomics/cic-helper/commit/341eb34d20f521d47c5f340b0b2bfebe62eadac9))
